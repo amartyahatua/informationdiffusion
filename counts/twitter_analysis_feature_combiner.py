@@ -62,36 +62,9 @@ def performCombineTwitterVolumeFeatures(listHashtagsFolder, bHasIndexColumn, csv
                     if(key not in lstHourKeys):
                         lstHourKeys.append(key)
                 lstHTAnalyzeResults[hashtag] = dictHourCnt
-    #sort keys
-#     lstHourKeys.sort()
-#     lstColNames = []
-#     lstColNames.append('Hashtag')
-#     for key in lstHourKeys:
-#         lstColNames.append(key)
-#     #write csv file 
-#     outFullFilePath = os.path.join(csvOutputFolder, outputFileName) 
-#     with open(outFullFilePath, 'w', newline='', encoding='utf-8') as csvfile:
-#         writer = csv.writer(csvfile, delimiter=',', quotechar='"', quoting=csv.QUOTE_NONNUMERIC, escapechar='\\')
-#         #write headers first
-#         writer.writerow(lstColNames)
-#         #write hashtags count
-#         lstItems = []
-#         for hashtag, dictCnt in lstHTAnalyzeResults.items():
-#             lstItems.clear()
-#             lstItems.append(hashtag)
-#             for key in lstHourKeys:
-#                 if(key in dictCnt):
-#                     lstItems.append(dictCnt[key])
-#                 else:
-#                     lstItems.append(0)
-#             writer.writerow(lstItems)
-#         csvfile.close()
+
     exportTweetTimeSeriesFeaturesToCSV(lstHourKeys, lstHTAnalyzeResults, csvOutputFolder, outputFileName)
         
-#performCombineTwitterVolumeFeatures(['./parsed/hour_tweet_amartya/','./parsed/hour_tweet_trung/'], True,
-#                              './', 'Hashtag_Tweet_Count_Hourly.csv')
-#performCombineTwitterVolumeFeatures(['./parsed/hour_retweet_amartya/','./parsed/hour_retweet_trung/'], False, 
-#                              './', 'Hashtag_Retweet_Count_Hourly.csv')
 
 def performCombineTwitterSentimentFeatures(listHashtagsFolder, bHasIndexColumn, csvOutputFolder, outputFileName):
     lstHTPosPercentageResults = {}
@@ -165,9 +138,6 @@ def performCombineTwitterSentimentFeatures(listHashtagsFolder, bHasIndexColumn, 
     exportTweetTimeSeriesFeaturesToCSV(lstHourKeys, lstHTNeuScoreResults, csvOutputFolder, outputFileName+'_NeuScore.csv')
     exportTweetTimeSeriesFeaturesToCSV(lstHourKeys, lstHTNegScoreResults, csvOutputFolder, outputFileName+'_NegScore.csv')
 
-#performCombineTwitterSentimentFeatures(['./sentiment_amartya/','./sentiment_trung/'], True,
-#                              './', 'Hashtag_Count_Hourly')
-
 def performCombineTwitterInfluenceFeatures(listHashtagsFolder, bHasIndexColumn, csvOutputFolder, outputFileName):
     lstHTDirectInfluenceResults = {}
     lstHTIndirectInfluenceResults = {}
@@ -197,16 +167,7 @@ def performCombineTwitterInfluenceFeatures(listHashtagsFolder, bHasIndexColumn, 
                         mentionedUsers = str(row['Mention List']).replace('[', '')
                         mentionedUsers = mentionedUsers.replace(']', '')
                         mentionedUsers = mentionedUsers.replace('\'', '')
-                        mentionedUsers = mentionedUsers.replace('", "', '","')                    
-                        #parser = csv.reader(mentionedUsers, delimiter=',', skipinitialspace=True, quotechar='"', 
-                        #                     doublequote=True, quoting=csv.QUOTE_MINIMAL)
-                        #print(mentionedUsers)
-                        #parser = csv.reader(mentionedUsers, dialect='excel', quotechar='"', delimiter=',',
-                        #                        doublequote=True, quoting=csv.QUOTE_ALL, skipinitialspace=True)
-                        #for fields in parser:
-                        #    for i,f in enumerate(fields):
-                        #        print(i,f)
-                        #    dictHourDirectInfluence[hourIdx] += len(fields)
+                        mentionedUsers = mentionedUsers.replace('", "', '","')
                         arrUsers = mentionedUsers.split(',')
                         dictHourDirectInfluence[hourIdx] += len(arrUsers)                            
                     #indirect influence => SUM of followers

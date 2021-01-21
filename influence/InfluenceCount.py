@@ -70,7 +70,6 @@ class InfuenceCount:
         textList = text.values.tolist()
         for i in range(len(textList)):
             tempText = textList[i]
-            #print(tempText[0])
             atTheRate = '@'
             totalFollower = 0
             follower = 0

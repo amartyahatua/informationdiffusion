@@ -121,11 +121,6 @@ class ExtractHashTags:
             parsedString = file_name_parse.split('\\')
             parsedString = parsedString[len(parsedString)-1].split('.')[0]+'.csv'
             path_parse = '...\\usm\\spring17\\Bot account\\twitter_bot\\twitter_data\\hashStat\\Day-6\\'+parsedString
-#             length_path = (len(file_name_parse.split('\\')))
-#             #print(length_path)
-#             file_name = (file_name_parse.split('\\')[length_path-1])
-#             file_name = file_name.split('.')
-#             parsed_file = path_parse+file_name[0]+'.csv'
                 
         
             with open(path_parse,'w', newline='') as csvfile:

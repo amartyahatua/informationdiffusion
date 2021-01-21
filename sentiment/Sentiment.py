@@ -56,15 +56,6 @@ class Sentiment:
         except :
             sentiScore = 0
             return  sentiScore
-        #print('score = ',sentiScore)
-        #print(sentiQuery)
-# tweetSentence = "It was one of the worst movies I've seen, despite good reviews. \
-# ... Unbelievably bad acting!! Poor direction. VERY poor production. \
-# ... The movie was bad. Very bad movie. VERY bad movie. VERY BAD movie. VERY BAD movie!"
-#tweet = "Don't buy that. Think Black Wall Street. We need 2 know ourstory. Stop consuming the lies told 2 this country about\xe2\x80\xa6 https://t.co/8I8davZ55v"
-
-#Sentiment.getSentimentsentiment140(tweet)
-#getSentimentNLTK(tweetSentence)
 
 
 

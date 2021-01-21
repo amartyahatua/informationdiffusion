@@ -386,7 +386,6 @@ class TweetParserBasedOnHashTags:
                         self.listed_count_list.append(str(obj['user']['listed_count']))
                         self.favourites_count_list.append(str(obj['user']['favourites_count']))
                         self.statuses_count_list.append(str(obj['user']['statuses_count']))
-##-------------------------------------------------------------------------------------------------                        
                         if(str(obj['user']['utc_offset']) == 'None'):
                             self.utc_offset_list.append(0)
                         else:
@@ -529,7 +528,6 @@ class TweetParserBasedOnHashTags:
                             try:
                                 location_string = (str(obj['user']["location"].encode('utf-8').strip()))
                                 location_string = TweetParserBasedOnHashTags.remove_b(1,location_string)
-                                #location_list.append(TweetParserBasedOnHashTags.remove_comma(1,location_string))
                                 location_string = TweetParserBasedOnHashTags.remove_comma(1,location_string)
                                 geolocator = Nominatim()
                                 location = geolocator.geocode(location_string)

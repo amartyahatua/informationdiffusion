@@ -45,12 +45,10 @@ def convertDataToSequence(df, seq_len, normalise_window):
     sequence_length = seq_len + 1
     result = []
     for index in range(len(df.columns) - sequence_length):
-        #print(index, index+sequence_length)
         result.append(np.array(df.ix[:,index:index + sequence_length]))
     print(len(result))
     if normalise_window:
         result = normalise_windows(result)
-        #result = result.div(result.sum(axis=1), axis=0)   
 
     result = np.array(result)    
     print('result:', result.shape)
@@ -76,10 +74,6 @@ def convertDataToSequence(df, seq_len, normalise_window):
 def normalise_windows(window_data):
     normalised_data = []
     for window in window_data:
-        #normalised_window = [((float(p) / float(window[0])) - 1) for p in window]
-        #print(window.shape)
-        #row_sums = window.sum(axis=1)
-        #normalised_data.append(window / row_sums[:, np.newaxis])
         normalised_window = normalize(window, axis=1, norm='l1')
         normalised_data.append(normalised_window)
     return normalised_data
@@ -184,19 +178,11 @@ model.fit(
     nb_epoch=epochs,
     validation_split=0.05)
 
-#predictions = predict_sequences_multiple(model, X_test, seq_len, 50)
-#predicted = predict_sequence_full(model, X_test, seq_len)
 predicted = predict_point_by_point(model, X_test)        
 
 print('Training duration (s) : ', time.time() - global_start_time)
-#plot_results_multiple(predictions, y_test, 50)
 plot_results(predicted, y_test, 'output_prediction_NeuScore_100epoch_wd24_1x24x128x1.jpg')
 np.savetxt('output_prediction_NeuScore_100epoch_wd24_1x24x128x1.txt', predicted)
-
-
-# In[78]:
-
-# evaluate the result
 test_mse = model.evaluate(X_test, y_test, verbose=1)
 print('\nThe mean squared error (MSE) on the test data set is %.6f over %d test samples.' 
       % (test_mse, len(y_test)))

@@ -80,7 +80,6 @@ class collect_data:
                 time.sleep(20)
                 mins += 1
                 print(file_name)
-                #parse_data.doParsing(1,file_name)
                 
 
 

@@ -164,7 +164,7 @@ class HashtagsTweetsAnalyzer(object):
         self.hashtag = ''
     
     def  readHashtagsList(self, fileName):
-        #'C:\\Users\\ahatua\\Desktop\\1.csv'
+        
         listHashtags = []
         with open(fileName) as csvfile:
             spamreader = csv.reader(csvfile, delimiter=' ', quotechar='|')
@@ -244,23 +244,18 @@ class HashtagsTweetsAnalyzer(object):
             if(len(entities['symbols']) > 0):
                 for symbol in entities['symbols']:
                     tweetObj.entities_symbols.append(symbol['text'])
-            #print('Ratio Symbol In Tweets:', self.nRatioSymbolInTweets)
-            #print('Total Symbol In tweets:', self.nTotalSymbolInTweets)
+
             lstMentionedUsers = entities.get('user_mentions',[])
             for mentioned_user in lstMentionedUsers:            
                 tweetObj.entities_user_mentions.append(mentioned_user['screen_name'])
-            #print('Total Mentioned Tweets:', self.nTotalMentionedTweets)
-            #print('Total Mentioned Retweets:', self.nTotalMentionedRetweets)
-            #print('Total Mentioned Users:', self.nTotalMentionedUsers)
-            #print('List Mentioned Users:', self.arrMentionedUsers)
+
             if(len(entities['hashtags']) > 0):                
                 for hash_tags in entities['hashtags']:
                     tweetObj.entities_hashtags.append(hash_tags['text'])
             if(len(entities['urls']) > 0):
                 for url in entities['urls']:
                     tweetObj.entities_urls.append(url['expanded_url'])
-            #print('Ratio Url In Tweets:', self.nRatioUrlInTweets)
-            #print('Total Url In tweets:', self.nTotalUrlInTweets)
+
             lstMedia = entities.get('media', [])    
             if(len(lstMedia) > 0):
                 for media_element in lstMedia:
@@ -270,10 +265,7 @@ class HashtagsTweetsAnalyzer(object):
                         tweetObj.entities_media_video.append(media_element['media_url'])
                     else:
                         tweetObj.entities_media_other.append(media_element['media_url'])
-            #print('Ratio Image In Tweets:', self.nRatioImageInTweets)
-            #print('Total Image In tweets:', self.nTotalImageInTweets)
-            #print('Ratio Video In Tweets:', self.nRatioVideoInTweets)
-            #print('Total Video In tweets:', self.nTotalVideoInTweets) 
+
             self.listTweetObjs.append(tweetObj)
         
     def exportTweetsJsonToCSV(self, outFileName):
@@ -319,10 +311,7 @@ def performHashtagsAnalysisAndExporting(hashtagsFolder, csvOutputFolder):
             #add to list
             lstHTAnalyzeResults.append(analyzer)
             alltweets.clear()
-            #if(cnt == 10):
-            #    break
-    #export hourly count 
-    #need to sort list first
+
     lstHourKeys.sort()
     lstColNames = []
     lstColNames.append('Hashtag')
@@ -347,5 +336,5 @@ def performHashtagsAnalysisAndExporting(hashtagsFolder, csvOutputFolder):
         csvfile.close()
     return True
 
-#testHashtagsAnalyzer("IndependenceDay2017.json")
+
 performHashtagsAnalysisAndExporting('./Hashtags', './Hashtags_csv')

@@ -5,8 +5,8 @@ from sklearn import preprocessing
 class TweetCountPerDay:
     
     def getDateWiseCount(self):
-        cur_dir = 'C:\\Users\\ahatua\\Desktop\\usm\\spring17\\Bot account\\twitter_bot\\twitter_data\\parsed\\temp\\'
-        out_dir = 'C:\\Users\\ahatua\\Desktop\\usm\\spring17\\Bot account\\twitter_bot\\twitter_data\\parsed\\'
+        cur_dir = '..\\twitter_bot\\twitter_data\\parsed\\temp\\'
+        out_dir = '..\\twitter_bot\\twitter_data\\parsed\\'
         dirs = os.listdir(cur_dir)
         outputFile = out_dir+'result_tweet_fileMoreThan10000.csv'
         for file in dirs:

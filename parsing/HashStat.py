@@ -41,13 +41,6 @@ class HashStat:
 			minute = rowtext[3][3:5]
 			second = rowtext[3][6:8]
 			year = rowtext[5][0:4]
-	#         dateTime.append(day)
-	#         dateTime.append(month)
-	#         dateTime.append(date)
-	#         dateTime.append(hour)
-	#         dateTime.append(minute)
-	#         dateTime.append(second)
-	#         dateTime.append(year)
 			tempDayTime = (day+month+date+hour+minute+second+year)
 			#print(tempDayTime)
 			#print(l)
@@ -60,10 +53,7 @@ class HashStat:
 				ListOfHashTags.append(tempDict)
 		 
 		return ListOfHashTags       
-	#         
-	#         #dateTime.append(hashtags)    
-	#     print(ListOfHashTags)
-	#     print('===================')
+
 	def readFile():
 		# My code here
 		print('in main')

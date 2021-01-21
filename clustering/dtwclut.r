@@ -50,25 +50,7 @@ hc.clust <- data.frame(dtwclust = repc.tadp@cluster)
 write.csv(hc.clust, file = '..\\result_hourly_matrix\\temp_cluster_label.csv')
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 #######################################################
-
-
 
 repc.tadp <- tsclust(sc_numeric, type = "tadpole", k = 4L:10L,
                      trace = TRUE,
@@ -76,31 +58,10 @@ repc.tadp <- tsclust(sc_numeric, type = "tadpole", k = 4L:10L,
 names(repc.tadp) <- paste0("k_", 4L:10L)
 sapply(repc.tadp, cvi, type = "internal")
 
-
-
-
-
-
-
-
-
-
-sc <- read.csv("C:\\Users\\ahatua\\Desktop\\usm\\spring17\\Bot account\\twitter_bot\\twitter_data\\result_hourly_matrix\\Hashtag_Count_Hourly_NegScore.csv",header=F, sep="," )
+sc <- read.csv("..\\twitter_bot\\twitter_data\\result_hourly_matrix\\Hashtag_Count_Hourly_NegScore.csv",header=F, sep="," )
 sc_numeric = sc[2:1624,2:467]
 repc.tadp <- tsclust(sc_numeric, type = "tadpole", k = 4L:10L,
                      trace = TRUE,
                      control = tadpole_control(dc = 0.5, window.size = 24L))
 names(repc.tadp) <- paste0("k_", 4L:10L)
 sapply(repc.tadp, cvi, type = "internal")
-
-
-
-
-
-
-
-
-
-
-
-

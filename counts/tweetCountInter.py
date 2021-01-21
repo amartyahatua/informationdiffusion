@@ -26,7 +26,7 @@ class TweetParserBasedOnHashTagsRetweet:
     def doParsing(self,fileName,file):
     
         fileNameWithOutType = file.split(".")[0]
-        parsed_file = "C:\\Users\\ahatua\\Desktop\\usm\\spring17\\Bot account\\twitter_bot\\twitter_data\\parsed\\hourWiseTweetCount\\"+fileNameWithOutType+".csv"
+        parsed_file = "..\\twitter_bot\\twitter_data\\parsed\\hourWiseTweetCount\\"+fileNameWithOutType+".csv"
         
         data = pd.read_csv(fileName)
         df = pd.DataFrame(data)
@@ -87,7 +87,7 @@ class TweetParserBasedOnHashTagsRetweet:
    
                                              
         
-path = 'C:\\Users\\ahatua\\Desktop\\usm\\spring17\\Bot account\\twitter_bot\\twitter_data\\parsed\\raw_parsed_241\\'
+path = '..\\twitter_bot\\twitter_data\\parsed\\raw_parsed_241\\'
 dirs = os.listdir( path )
 #print(dirs)
 for file in dirs:

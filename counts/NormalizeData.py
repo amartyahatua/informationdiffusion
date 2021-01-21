@@ -1,8 +1,3 @@
-
-# coding: utf-8
-
-# In[2]:
-
 import numpy as np 
 import pandas as pd
 from sklearn import preprocessing
@@ -22,18 +17,15 @@ class NormalizeHashTagCount:
         
         df_norm = preprocessing.normalize(df, axis = 1)
         df_norm = pd.DataFrame(df_norm, index=df.index.tolist(), columns=df.columns.tolist())
-        df_norm.to_csv('C:\\Users\\ahatua\\Desktop\\usm\\spring17\\Bot account\\twitter_bot\\twitter_data\\result_hourly_matrix\\Hashtag_Count_Hourly_IndirectInfluence_Normalized.csv')
+        df_norm.to_csv('..\\twitter_bot\\twitter_data\\result_hourly_matrix\\Hashtag_Count_Hourly_IndirectInfluence_Normalized.csv')
         
         
     
-filePath = "C:\\Users\\ahatua\\Desktop\\usm\\spring17\\Bot account\\twitter_bot\\twitter_data\\result_hourly_matrix\\Hashtag_Count_Hourly_IndirectInfluence.csv"
+filePath = "..\\twitter_bot\\twitter_data\\result_hourly_matrix\\Hashtag_Count_Hourly_IndirectInfluence.csv"
 notmalize = NormalizeHashTagCount()  
 notmalize.doNormalizarion(filePath)
 
 
-
-
-# In[ ]:
 
 
 

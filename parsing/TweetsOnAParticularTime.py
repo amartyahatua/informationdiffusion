@@ -112,7 +112,7 @@ class TweetsOfAParticularTime:
             
             data = json.load(json_data)
             fileNameWithOutType = file.split(".")[0]
-            parsed_file = "C:\\Users\\ahatua\\Desktop\\usm\\spring17\\Bot account\\twitter_bot\\twitter_data\\parsed\\hourWiseTweetCount\\"+fileNameWithOutType+".csv"
+            parsed_file = "..\\twitter_bot\\twitter_data\\parsed\\hourWiseTweetCount\\"+fileNameWithOutType+".csv"
             for obj in data:
                 temp = obj
                 x_str = str(temp)
@@ -167,7 +167,7 @@ class TweetsOfAParticularTime:
         
         
         
-path = 'C:\\Users\\ahatua\\Desktop\\usm\\spring17\\Bot account\\twitter_bot\\twitter_data\\raw\\'
+path = '..\\twitter_bot\\twitter_data\\raw\\'
 dirs = os.listdir( path )
 
 for file in dirs:

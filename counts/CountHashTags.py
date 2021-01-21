@@ -40,7 +40,7 @@ class CountHashTags:
             rows = zip(self.hashtagList,self.hashtagCount)
 #         parsedString = filename.split('\\')
 #         parsedString = parsedString[len(parsedString)-1].split('.')[0]+'.csv'
-            path_parse = 'C:\\Users\\ahatua\\Desktop\\usm\\spring17\\Bot account\\twitter_bot\\twitter_data\\dict\\combined\\combine_30\\threshold_30.csv'    
+            path_parse = '..\\twitter_bot\\twitter_data\\dict\\combined\\combine_30\\threshold_30.csv'    
             with open(path_parse,'w', newline='') as csvfile:
                 writer = csv.writer(csvfile, delimiter=",")
                            
@@ -55,7 +55,7 @@ class CountHashTags:
                 except:
                     print ("Unexpected error:", sys.exc_info()[0])    
 
-path = "C:\\Users\\ahatua\\Desktop\\usm\\spring17\\Bot account\\twitter_bot\\twitter_data\\dict\\combined\\threshold_30\\"
+path = "..\\twitter_bot\\twitter_data\\dict\\combined\\threshold_30\\"
 
 # for file in dirs:
 #     fullpath = path+file

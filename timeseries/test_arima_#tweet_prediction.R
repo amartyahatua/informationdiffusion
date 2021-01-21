@@ -2,7 +2,7 @@ library(TSPred)
 library(data.table)
 library(tseries)
 library(forecast)
-setwd("D:\\Working\\Research\\TwitterSocialNetworkAnalysis\\PredictInformationDiffusionModel\\processed_features\\")
+setwd("..\\TwitterSocialNetworkAnalysis\\PredictInformationDiffusionModel\\processed_features\\")
 data <- read.csv("Hashtag_Count_Hourly_NegScore.csv", header = TRUE, row.names = 1)  # read text file
 outRMSEFileName = "RMSE_ARIMA_NegScore.csv"
 tmp_data = apply(data>0, 1, sum)

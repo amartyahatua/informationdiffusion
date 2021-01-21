@@ -48,7 +48,7 @@ class CreateHasTagCount:
         rows = zip(self.hashtagList,self.hashtagCount)
         parsedString = file_name_parse.split('\\')
         parsedString = parsedString[len(parsedString)-1].split('.')[0]+'.csv'
-        path_parse = 'C:\\Users\\ahatua\\Desktop\\usm\\spring17\\Bot account\\twitter_bot\\twitter_data\\hashStat\\result\\'+parsedString    
+        path_parse = '..\\twitter_bot\\twitter_data\\hashStat\\result\\'+parsedString    
         with open(path_parse,'w', newline='') as csvfile:
             writer = csv.writer(csvfile, delimiter=",")
                       
@@ -63,7 +63,7 @@ class CreateHasTagCount:
             except:
                 print ("Unexpected error:", sys.exc_info()[0])
     
-path = "C:\\Users\\ahatua\\Desktop\\usm\\spring17\\Bot account\\twitter_bot\\twitter_data\\hashStat\\count2\\"
+path = "..\\twitter_bot\\twitter_data\\hashStat\\count2\\"
 dirs = os.listdir( path )
 for file in dirs:
     fullpath = path+file

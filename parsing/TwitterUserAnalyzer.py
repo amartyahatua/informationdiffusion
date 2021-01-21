@@ -67,13 +67,13 @@ class SentimentAnalysis:
     
 class UserProfile:
     def __init__(self):
-        self.consumer_key="gJJbnrwijEqICj596zAVFkRYm"
-        self.consumer_secret="3xUlkfAfkCSG03dlNuGFlxomDw1O6aRiu2IJH2tWZ49gqhTRc8"
+        self.consumer_key="xxxxxxxxxxxx"
+        self.consumer_secret="xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
 
         # After the step above, you will be redirected to your app's page.
         # Create an access token under the the "Your access token" section
-        self.access_token="2810662016-vU2Ndow4mwTZXGAGZENI1Efujsduaib64VTihyk"
-        self.access_token_secret="oWSfzUN869IipJBgfeGs2sxAyruqRQewNm04KioLIlGFJ"
+        self.access_token="xxxxxxxxxxxx"
+        self.access_token_secret="xxxxxxxxxxxx"
 
         self.auth = OAuthHandler(self.consumer_key, self.consumer_secret)
         self.auth.set_access_token(self.access_token, self.access_token_secret)        
@@ -167,23 +167,15 @@ class UserProfile:
     def analyzeUserProfile(self, screen_name):
         userDeatilsRequestURL = "https://api.twitter.com/1.1/users/lookup.json?screen_name=" + screen_name
         response, data = self.client.request(userDeatilsRequestURL)  
-     
-        #userProfile = 'userProfile.json'
-        #savefile = open(userProfile,'w')
-        my_json = data.decode('utf8')    
-        #print(screenName)
-        #print(my_json)    
+        my_json = data.decode('utf8')        
         my_json = json.loads(my_json)
         word = 'errors'
-    
-        #print('++++++++++++++++++')
         if word in my_json:
             print('Error')
         else:
             self.idlist.append((my_json[0]['id']))
             self.screen_name.append(str(my_json[0]['screen_name']))            
             
-            #default_profile_image.append(str(my_json[0]['default_profile_image']))
             if my_json[0]['default_profile_image']:
                 self.default_profile_image.append(1)
             else:
@@ -222,8 +214,7 @@ class UserProfile:
                 self.follow_request_sent.append(1)
             else:
                 self.follow_request_sent.append(0)
-            
-            #translator_type.append(str(my_json[0]['translator_type']))            
+                       
             if 'none' in my_json[0]['translator_type']:
                 self.translator_type.append(0)
             else: 
@@ -248,9 +239,7 @@ class UserProfile:
                 self.location.append('none')
             else:
                 if (self.isEnglish(my_json[0]['location']) == 1):
-                    #print( my_json[0]['location'])
                     location_string = str(my_json[0]['location'])
-                    #location_string = remove_b(location_string)
                     self.location.append(location_string)
                 else:
                     self.location.append('none')
@@ -276,7 +265,7 @@ class UserProfile:
             self.langIndex = self.getLanguageList(self.lang)
             
     def exportCSV(self, outFileName, lstStatsColNames, lstUserStats):
-        #parsedfileUser = 'C:\\Users\\ahatua\\Desktop\\userprofile.csv'  
+
         with open(outFileName,'w', newline='') as csvfile:
             writer = csv.writer(csvfile, delimiter=',', quotechar='|', quoting=csv.QUOTE_NONE)
             lstCols = ["id","screen_name","default_profile_image","statuses_count","profile_use_background_image","profile_link_color",
@@ -300,9 +289,6 @@ class UserProfile:
                     rowData.extend(lstUserStats[i])
                     dataRows.append(rowData)
                     i += 1
-            # Not included features: description
-            # for i in range(len(rows)):
-            #     writer.writerow(rows[i])
             try:  
                 for rowData in dataRows:    
                     writer.writerow(rowData)
@@ -315,18 +301,18 @@ class UserProfile:
                                 
 class UserTweetStats:
     def __init__(self, screen_name):
-        #self.screen_name = "ylecun"
+
         self.screen_name = screen_name
         #alltweets = get_all_tweets(screen_name)
         # Go to http://apps.twitter.com and create an app.
         # The consumer key and secret will be generated for you after
-        self.consumer_key="gJJbnrwijEqICj596zAVFkRYm"
-        self.consumer_secret="3xUlkfAfkCSG03dlNuGFlxomDw1O6aRiu2IJH2tWZ49gqhTRc8"
+        self.consumer_key="xxxxxxxxxxxxxxxxxxx"
+        self.consumer_secret="xxxxxxxxxxxxxxxxxxx"
 
         # After the step above, you will be redirected to your app's page.
         # Create an access token under the the "Your access token" section
-        self.access_token="2810662016-vU2Ndow4mwTZXGAGZENI1Efujsduaib64VTihyk"
-        self.access_token_secret="oWSfzUN869IipJBgfeGs2sxAyruqRQewNm04KioLIlGFJ"
+        self.access_token="xxxxxxxxxxxxxxxxxxx"
+        self.access_token_secret="xxxxxxxxxxxxxxxxxxx"
 
         self.auth = OAuthHandler(self.consumer_key, self.consumer_secret)
         self.auth.set_access_token(self.access_token, self.access_token_secret) 
@@ -492,14 +478,6 @@ class UserTweetStats:
         #Trending topics
         print(self.nTotalInTrending)
     def get_all_tweets(self, screen_name):
-        #Twitter only allows access to a users most recent 3240 tweets with this method
-    
-        #authorize twitter, initialize tweepy
-        #auth = tweepy.OAuthHandler(self.consumer_key, self.consumer_secret)
-        #auth.set_access_token(self.access_token, self.access_token_secret)
-        #api = tweepy.API(auth)
-        
-        #initialize a list to hold all the tweepy Tweets
         alltweets = []
         
         #make initial request for most recent tweets (200 is the maximum allowed count)
@@ -532,12 +510,7 @@ class UserTweetStats:
         with open('%s_tweets.json' % screen_name, 'w') as f:        
             f.write(json.dumps(outtweets))    
         pass
-        #write the csv
-        #with open('%s_tweets.csv' % screen_name, 'w') as f:
-        #    writer = csv.writer(f)
-        #    writer.writerow(["id","created_at","text"])
-        #    writer.writerows(outtweets)    
-        #pass
+        
         return alltweets
     def loadAllJsonTweets(self, fileName):
         with open(fileName) as data_file:    
@@ -556,15 +529,11 @@ class UserTweetStats:
                 self.arrMentionedUsers[mentioned_user['screen_name']] += 1
             else:
                 self.arrMentionedUsers[mentioned_user['screen_name']] = 1
-        #print('Total Mentioned Tweets:', self.nTotalMentionedTweets)
-        #print('Total Mentioned Retweets:', self.nTotalMentionedRetweets)
-        #print('Total Mentioned Users:', self.nTotalMentionedUsers)
-        #print('List Mentioned Users:', self.arrMentionedUsers)
+
         if(len(entities['urls']) > 0):
             self.nRatioUrlInTweets += 1
             self.nTotalUrlInTweets += len(entities['urls'])
-        #print('Ratio Url In Tweets:', self.nRatioUrlInTweets)
-        #print('Total Url In tweets:', self.nTotalUrlInTweets)
+
         lstMedia = entities.get('media', [])    
         if(len(lstMedia) > 0):
             tw_has_photo = False
@@ -580,28 +549,19 @@ class UserTweetStats:
                 self.nRatioImageInTweets += 1
             if(tw_has_video):
                 self.nRatioVideoInTweets += 1        
-        #print('Ratio Image In Tweets:', self.nRatioImageInTweets)
-        #print('Total Image In tweets:', self.nTotalImageInTweets)
-        #print('Ratio Video In Tweets:', self.nRatioVideoInTweets)
-        #print('Total Video In tweets:', self.nTotalVideoInTweets) 
+
         if(len(entities['symbols']) > 0):
             self.nRatioSymbolInTweets += 1
             self.nTotalSymbolInTweets += len(entities['symbols'])
-        #print('Ratio Symbol In Tweets:', self.nRatioSymbolInTweets)
-        #print('Total Symbol In tweets:', self.nTotalSymbolInTweets)
+
         if(len(entities['hashtags']) > 0):
             self.nTotalHastags += 1
         for hash_tags in entities['hashtags']:
-            #if hash_tags in self.arrTopHastags:
-            #    self.arrTopHastags[hash_tags] += 1
-            #else:
-            #    self.arrTopHastags[hash_tags] = 1
             self.arrTopHastags[hash_tags['text']] += 1
-        #print('Total Hashtags In Tweets:', self.nTotalHastags)
-        #print('List Hashtags In tweets:', self.arrTopHastags)
+
     def analyzeUserTweetTime(self, tweet):
         if(tweet['created_at'] is not None):
-            #print(tweet['created_at'])
+
             created_at = datetime(*(parsedate(tweet['created_at'])[:6]))
             #Hour
             if(0 <= created_at.hour & created_at.hour < 4):
@@ -652,92 +612,56 @@ class UserTweetStats:
                 self.arrTweetIphoneTimeFrequency[created_at.hour] += 1
             else:
                 self.arrTweetOtherTimeFrequency[created_at.hour] += 1
-        #for key in self.arrTweetTimeFrequency:
-        #    print('Tweet Time frequency %d-%d: %d' % (key*4+1, key*4+4, self.arrTweetTimeFrequency[key]))
-        #for key in self.arrRetweetTimeFrequency:
-        #    print('Retweet Time frequency %d-%d: %d' % (key*4+1, key*4+4, self.arrRetweetTimeFrequency[key]))
-        #for key in self.arrTweetDayFrequency:
-        #    print('Tweet weekday frequency %d: %d' % (key, self.arrTweetDayFrequency[key]))
-        #for key in self.arrRetweetDayFrequency:
-        #    print('Retweet weekday frequency %d: %d' % (key, self.arrRetweetDayFrequency[key]))
-        #for key in self.arrTweetWeekFrequency:
-        #    print('Tweet weeknum frequency %d: %d' % (key, self.arrTweetWeekFrequency[key]))
-        #for key in self.arrRetweetWeekFrequency:
-        #    print('Retweet weeknum frequency %d: %d' % (key, self.arrRetweetWeekFrequency[key]))
-        #for key in self.arrTweetMonthFrequency:
-        #    print('Tweet month frequency %d: %d' % (key, self.arrTweetMonthFrequency[key]))
-        #for key in self.arrRetweetMonthFrequency:
-        #    print('Retweet month frequency %d: %d' % (key, self.arrRetweetMonthFrequency[key]))
+
     def analyze(self, alltweets):
-        self.nTotalTweets = len(alltweets)
-        #print('Total Tweets:', self.nTotalTweets)
-        #print('-------------------------------------------------------------')
+
         i = 0
         for tweet in alltweets:
             i += 1
-            #print('---------------------------Tweet %d-------------------------' % i)
-            #if(tweet.retweeted_status is not None):
-#             if(tweet.get('text', 'null') != 'null'): 
-#                 textOfTweet = tweet['text'].encode("utf-8")
-#                 self.sentimentScore.append(SentimentAnalysis.getSentimentNLTK(self, textOfTweet))
-#                 self.sentimentScore.append(SentimentAnalysis.getSentimentsentiment140(self, textOfTweet))
-#                 print(self.sentimentScore)
+
             
             if(tweet.get('text', 'null') != 'null'): 
                 textOfTweet = tweet['text']
                 tp.getModel(textOfTweet)
-                #self.sentimentScore.append(SentimentAnalysis.getSentimentsentiment140(self, textOfTweet))
-                #print(self.sentimentScore)
-            
-            
-            
-            
-            
-            
+
             if(tweet.get('retweeted_status', 'null') != 'null'): 
                 self.nTotalRetweets += 1
-                #print('Total ReTweets:', self.nTotalRetweets)
+
             if(tweet.get('is_quote_status', False)):
                 self.nTotalQuoteStatus += 1
-                #print('Total Quote Status:', self.nTotalQuoteStatus)
+
             if(tweet['in_reply_to_user_id'] is not None):
                 self.nTotalInReplyTweets += 1
-                #print('Total In Reply Tweets:', self.nTotalInReplyTweets)
+
             if(tweet.get('favorited', False)):
                 self.nTotalFavoritedTweets += 1
             self.nTotalFavorites += tweet['favorite_count']
-            #print('Total Favorited Tweets:', self.nTotalFavoritedTweets)
-            #print('Total Favorite Count:', self.nTotalFavorites)
+
             if(tweet['coordinates'] is None):
                 self.nTotalNullCoordinates += 1
             else:
                 self.nTotalNotNullCoordinates += 1
-            #print('Total Null Coordinates:', self.nTotalNullCoordinates)
-            #print('Total Not Null Coordinates:', self.nTotalNotNullCoordinates)
+
             if(tweet.get('truncated', False)):
                 self.nTotalTruncated += 1
             else:
                 self.nTotalNotTruncated += 1
-            #print('Total Truncated Tweets:', self.nTotalTruncated)
-            #print('Total Not Truncated Tweets:', self.nTotalNotTruncated)
+
             if(tweet['contributors'] is None):
                 self.nTotalNullContributors += 1
             else:
                 self.nTotalNotNullContributors += 1
-            #print('Total Null Contributors:', self.nTotalNullContributors)
-            #print('Total Not Null Contributors:', self.nTotalNotNullContributors)            
+         
             if(tweet.get('possibly_sensitive', False)):
                 self.nTotalPossibleSensitive += 1
             else:
                 self.nTotalNotPossibleSensitive += 1
-            #print('Total Possible Sensitive:', self.nTotalPossibleSensitive)
-            #print('Total Not Possible Sensitive:', self.nTotalNotPossibleSensitive)
+
             if(tweet['geo'] is None):
                 self.nTotalNullGeo += 1
             else:
                 self.nTotalNotNullGeo += 1
-            #print('Total Null Geo:', self.nTotalNullGeo)
-            #print('Total Not Null Geo:', self.nTotalNotNullGeo)
+
             if(tweet['place'] is None):
                 self.nTotalNullPlace += 1
             else:
@@ -746,32 +670,19 @@ class UserTweetStats:
                     self.arrTopLocation[tweet['place']['id']] += 1
                 else:
                     self.arrTopLocation[tweet['place']['id']] = 1
-            #print('Total Null Place:', self.nTotalNullPlace)
-            #print('Total Not Null Place:', self.nTotalNotNullPlace)
-            #print('List top place:', self.arrTopLocation)
+
             if(tweet['lang'] is not None):                
                 if tweet['lang'] in self.arrTopLang:
                     self.arrTopLang[tweet['lang']] += 1
                 else:
                     self.arrTopLang[tweet['lang']] = 1
                 self.nTotalLang = len(self.arrTopLang)
-            #print('Total Language:', self.nTotalLang)
-            #print('List top language:', self.arrTopLang)
+
             self.analyzeUserEntities(tweet)
             self.analyzeUserTweetTime(tweet)
             
-            ### Sentiment analysis part starts --------------
-            #x = tweet
-            #print(tweet['text'])
-            
-            ### Sentiment analysis part ends ----------------
-            #print('-----------------------------------------------------------')
-            #if(i % 100 == 0):
-            #    break
     def exportArrToDelim(self, arr, lstItems, needSort, maxItem, defaultItem):
         if(needSort):
-            #sorted_arr = sorted(arr.items(), key=operator.itemgetter(1))
-            #sorted_arr.reverse()
             sorted_arr = sorted(arr, key=arr.get, reverse=True)
         else:
             sorted_arr = arr
@@ -825,7 +736,7 @@ class UserTweetStats:
         lstColNames.append('nTotalSymbolInTweets')
         #language of tweets
         lstColNames.append('nTotalLang')
-        #lstColNames.append('%d' % self.arrTopLang)
+
         for i in range(MAX_LANG_COLS_NUM):
             lstColNames.append('TopLanguage%2d' % (i+1))
         #Tweets frequency
@@ -917,9 +828,7 @@ class UserTweetStats:
         lstItems.append(self.nTotalNullPlace)
         lstItems.append(self.nTotalNotNullPlace)
         ##########################################
-        self.exportArrToDelim(self.arrTopLocation, lstItems, True, MAX_LOC_COLS_NUM, 0)
-        #print('User %s: NoStatsCols after add location=%d' % (screen_name, len(lstItems)))
-        #Url, image, video in tweets        
+        self.exportArrToDelim(self.arrTopLocation, lstItems, True, MAX_LOC_COLS_NUM, 0)     
         lstItems.append(self.nRatioUrlInTweets)
         lstItems.append(self.nTotalUrlInTweets)    
         lstItems.append(self.nRatioImageInTweets)
@@ -979,19 +888,10 @@ class UserTweetStats:
         return lstItems
     
 def performUserTweetStatsTest():
-    #test UserTweetStats class
     screen_name = "ylecun"
     userTweetsStatsAnalyzer = UserTweetStats(screen_name)
-    #userTweetsStatsAnalyzer.get_all_tweets(screen_name)
     allJsonTweets = userTweetsStatsAnalyzer.loadAllJsonTweets('%s_tweets.json' % screen_name)
-    userTweetsStatsAnalyzer.analyze(allJsonTweets)
-    
-    #for tweets in allJsonTweets: 
-    #userTweetsStatsAnalyzer.getSentimentNLTK(allJsonTweets)
-    
-    
-    
-    
+    userTweetsStatsAnalyzer.analyze(allJsonTweets)   
     userTweetsStatsAnalyzer.print()
     userStatsColNames = userTweetsStatsAnalyzer.getFeaturesNames(True, True)
     userStatsStr = userTweetsStatsAnalyzer.exportCSV(True, 123456789, True, screen_name)
@@ -1019,4 +919,3 @@ def performUserProfileTest():
     userProf.exportCSV('userAlls.csv', userStatsColNames, lstUserStats)
     
 performUserTweetStatsTest()
-#performUserProfileTest()
